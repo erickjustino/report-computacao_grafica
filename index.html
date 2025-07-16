@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
-<meta name="author" content="JOSE DA SILVA">
-<title>DCA0201: Paradigmas de programação</title>
+<meta name="author" content="Erick Vinicius Justino da Silva">
+<title>Práticas da Disciplina de Computação Gráfica</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -434,82 +434,123 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>DCA0201: Paradigmas de programação</h1>
+<h1>Práticas da Disciplina de Computação Gráfica</h1>
 <div class="details">
-<span id="author" class="author">JOSE DA SILVA</span><br>
+<span id="author" class="author">Erick Vinicius Justino da Silva</span><br>
+<span id="email" class="email"><a href="mailto:erick.justino.701@ufrn.edu.br">erick.justino.701@ufrn.edu.br</a></span><br>
+<span id="revdate">2025-07-15</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <ul class="sectlevel1">
-<li><a href="#_ementa">1. Ementa</a></li>
-<li><a href="#_curvas_no_plano">2. Curvas no Plano</a></li>
-<li><a href="#_bibliografia">3. Bibliografia</a></li>
+<li><a href="#_prefácio">Prefácio</a></li>
+<li><a href="#_compilação_dos_projetos">1. Compilação dos Projetos</a></li>
+<li><a href="#_curvas_no_plano">2. Curvas no Plano</a>
+<ul class="sectlevel2">
+<li><a href="#_splines_nurbs">2.1. Splines NURBS</a></li>
+<li><a href="#_influência_do_vetor_de_nós_e_da_ordem_na_forma_das_curvas_nurbs">2.2. Influência do Vetor de Nós e da Ordem na Forma das Curvas NURBS</a></li>
+<li><a href="#_diferenças_entre_curvas_bézier_e_nurbs_de_mesma_ordem">2.3. Diferenças entre Curvas Bézier e NURBS de Mesma Ordem</a></li>
+</ul>
+</li>
+<li><a href="#_desenhando_linhas_e_pontos">3. Desenhando Linhas e Pontos</a>
+<ul class="sectlevel2">
+<li><a href="#_quadrado">3.1. Quadrado</a></li>
+<li><a href="#_algoritmo_de_bresenham_para_linhas">3.2. Algoritmo de Bresenham para Linhas</a></li>
+<li><a href="#_algoritmo_de_bresenham_para_circunferências">3.3. Algoritmo de Bresenham para Circunferências</a></li>
+</ul>
+</li>
+<li><a href="#_modelagem_de_sólidos">4. Modelagem de Sólidos</a>
+<ul class="sectlevel2">
+<li><a href="#_super_jato">4.1. Super-Jato</a></li>
+<li><a href="#_logo_super_jato">4.2. Logo Super-Jato</a></li>
+</ul>
+</li>
+<li><a href="#_modelos_de_iluminação_e_sombreamento">5. Modelos de Iluminação e Sombreamento</a></li>
+<li><a href="#_preenchimento_de_regiões">6. Preenchimento de Regiões</a>
+<ul class="sectlevel2">
+<li><a href="#_nome_e_sobrenome">6.1. Nome e Sobrenome</a></li>
+<li><a href="#_seleção">6.2. Seleção</a></li>
+<li><a href="#_seleção_com_buffer">6.3. Seleção com Buffer</a></li>
+</ul>
+</li>
+<li><a href="#_projeções_geométricas">7. Projeções Geométricas</a>
+<ul class="sectlevel2">
+<li><a href="#_tipos_de_projeções_i">7.1. Tipos de Projeções I</a></li>
+<li><a href="#_tipos_de_projeções_ii">7.2. Tipos de Projeções II</a></li>
+</ul>
+</li>
+<li><a href="#_superfícies_no_espaço">8. Superfícies no Espaço</a></li>
+<li><a href="#_transformações_geométricas">9. Transformações Geométricas</a>
+<ul class="sectlevel2">
+<li><a href="#_braço_e_garra">9.1. Braço e Garra</a></li>
+<li><a href="#_braço_e_garra_3d">9.2. Braço e Garra 3D</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div id="preamble">
+<div class="sect1">
+<h2 id="_prefácio">Prefácio</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Agostinho Brito &lt;<a href="mailto:agostinhobritojr@gmail.com">agostinhobritojr@gmail.com</a>&gt;</p>
+<p>Este documento detalha as implementações desenvolvidas para a disciplina de Computação Gráfica. Cada seção corresponde a uma prática específica, apresentando o problema, a solução implementada em C com OpenGL e as instruções de compilação.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ementa">1. Ementa</h2>
+<h2 id="_compilação_dos_projetos">1. Compilação dos Projetos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Aqui vem um texto normal</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>lista de nivel 1</p>
-</li>
-<li>
-<p>lista de nivel 1</p>
-<div class="ulist">
-<ul>
-<li>
-<p>lista de nivel 2</p>
-</li>
-<li>
-<p>lista de nivel 2</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>lista de nivel 1</p>
-</li>
-</ul>
+<p>Todos os projetos foram desenvolvidos e testados no ambiente Windows, utilizando o compilador MinGW (g++). Para facilitar o processo de compilação, foi criado um <code>Makefile</code> padrão, que automatiza a geração dos executáveis.</p>
 </div>
 <div class="paragraph">
-<p>Link github (<a href="http://github.com/agostinhobritojr/dca0201">link do github</a>)</p>
+<p>O <code>Makefile</code> a seguir foi utilizado como base para todos os projetos. Ele foi configurado para linkar as bibliotecas necessárias (<code>freeglut</code>, <code>opengl32</code>, <code>glu32</code>) no Windows.</p>
 </div>
-<div class="paragraph">
-<p>A saída do programa <em>hello</em> é mostrado na Figura <a href="#fig_hello">[fig_hello]</a></p>
-</div>
-<div class="paragraph">
-<p>Podem ser inseridas equacoes como \$\int_a^b \xi f(x) dx\$</p>
-</div>
-<div class="paragraph">
-<p>Video no youtube</p>
-</div>
-<div class="videoblock">
+<div id="makefile_base" class="listingblock">
+<div class="title">Listagem 1. Makefile base para compilação no Windows</div>
 <div class="content">
-<iframe src="https://www.youtube.com/embed/zfzIDdHql1s?rel=0" frameborder="0" allowfullscreen></iframe>
+<pre class="pygments highlight"><code data-lang="makefile"># Nome do compilador C++ (funciona para .c também)
+CC = g++
+
+# Nome do executável que será gerado (SEM a extensão .c)
+# Mude apenas esta linha para seus outros projetos.
+EXEC = quadrado
+
+# Código fonte principal
+SRC = $(EXEC).c
+
+# Flags de compilação (O2 para otimização)
+CFLAGS = -O2 -Wall
+
+# Bibliotecas (Libs) necessárias para OpenGL com FreeGLUT no Windows
+# opengl32 é a biblioteca principal do Windows, freeglut cuida da janela/contexto.
+LIBS = -lfreeglut -lopengl32 -lglu32 -lm
+
+# ----- REGRAS -----
+
+# Regra padrão: o que acontece quando você digita apenas 'make'
+all: $(EXEC).exe
+
+# Regra para criar o arquivo .exe a partir do .c
+# Ele compila o fonte ($&lt;) e gera o executável ($@)
+$(EXEC).exe: $(SRC)
+	$(CC) $(CFLAGS) $&lt; -o $@ $(LIBS)
+	@echo "Programa '$(EXEC).exe' compilado com sucesso!"
+
+# Regra para limpar a pasta
+# Remove o executável e outros arquivos temporários
+clean:
+	-del /F /Q $(EXEC).exe *.o *~ 2&gt;nul
+	@echo "Limpeza concluída."</code></pre>
 </div>
 </div>
-<div class="videoblock">
-<div class="content">
-<video src="./figs/MyVideo.avi" controls>
-Your browser does not support the video tag.
-</video>
-</div>
+<div class="paragraph">
+<p>Para compilar qualquer um dos projetos, basta abrir o terminal, navegar até a pasta correspondente e editar o campo Exec no Makefile, inserindo o nome do arquivo .c (sem a extensão) que você deseja compilar. Em seguida, execute o comando make para gerar o executável. Após a compilação, é possível rodar o programa diretamente pelo terminal. Caso queira remover os executáveis gerados, utilize o comando make clean.</p>
 </div>
 </div>
 </div>
@@ -517,21 +558,15 @@ Your browser does not support the video tag.
 <h2 id="_curvas_no_plano">2. Curvas no Plano</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Nesta seção, é apresentado o desenvolvimento de uma aplicação para visualização de curvas NURBS (Non-Uniform Rational B-Splines). O programa, implementado no arquivo <code>splinesnurbs.c</code>, permite a manipulação interativa dos pontos de controle da curva e a visualização dos efeitos de diferentes tipos de vetores de nós.</p>
+<p>Esta seção apresenta uma aplicação para visualização e manipulação de curvas NURBS (Non-Uniform Rational B-Splines), um padrão para a modelagem de curvas suaves.</p>
 </div>
+<div class="sect2">
+<h3 id="_splines_nurbs">2.1. Splines NURBS</h3>
 <div class="paragraph">
-<p>A interatividade principal permite ao usuário:
-* Mover os pontos de controle da curva clicando e arrastando-os com o mouse.
-* Alternar entre três tipos de vetores de nós para a curva NURBS, pressionando as seguintes teclas:
-<strong> 'u': para um vetor de nós uniforme.
-</strong> 'o': para um vetor de nós uniforme aberto (o padrão).
-** 'n': para um vetor de nós não-uniforme.</p>
-</div>
-<div class="paragraph">
-<p>A seguir, é apresentada a listagem do código-fonte da aplicação.</p>
+<p>O programa <code>splinesnurbs.c</code> permite que o usuário mova os pontos de controle da curva e alterne entre diferentes tipos de vetores de nós (uniforme, aberto e não-uniforme) para observar seus efeitos na forma da curva.</p>
 </div>
 <div id="exa_splinesnurbs" class="listingblock">
-<div class="title">Listagem 1. splinesnurbs.c</div>
+<div class="title">Listagem 2. splinesnurbs.c</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="c">#include &lt;stdlib.h&gt;
 #include &lt;GL/glut.h&gt;
@@ -719,68 +754,2364 @@ int main(int argc, char **argv)
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Para facilitar a compilação do projeto no ambiente Windows, o <code>Makefile</code> foi ajustado para utilizar o compilador <code>g++</code> (MinGW) e as bibliotecas <code>freeglut</code>, <code>opengl32</code> e <code>glu32</code>. A seguir, o conteúdo do <code>Makefile</code>.</p>
+<hr>
 </div>
-<div id="exa_makefile_curvas" class="listingblock">
-<div class="title">Listagem 2. Makefile para Curvas no Plano</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="makefile"># Nome do compilador C++ (funciona para .c também)
-CC = g++
-
-# Nome do executável que será gerado (SEM a extensão .c)
-# Mude apenas esta linha para seus outros projetos.
-EXEC = splinesnurbs
-
-# Código fonte principal
-SRC = $(EXEC).c
-
-# Flags de compilação (O2 para otimização)
-CFLAGS = -O2 -Wall
-
-# Bibliotecas (Libs) necessárias para OpenGL com FreeGLUT no Windows
-# opengl32 é a biblioteca principal do Windows, freeglut cuida da janela/contexto.
-LIBS = -lfreeglut -lopengl32 -lglu32 -lm
-
-# ----- REGRAS -----
-
-# Regra padrão: o que acontece quando você digita apenas 'make'
-all: $(EXEC).exe
-
-# Regra para criar o arquivo .exe a partir do .c
-# Ele compila o fonte ($&lt;) e gera o executável ($@)
-$(EXEC).exe: $(SRC)
-	$(CC) $(CFLAGS) $&lt; -o $@ $(LIBS)
-	@echo "Programa '$(EXEC).exe' compilado com sucesso!"
-
-# Regra para limpar a pasta
-# Remove o executável e outros arquivos temporários
-clean:
-	-del /F /Q $(EXEC).exe *.o *~ 2&gt;nul
-	@echo "Limpeza concluída."</code></pre>
+<div class="sect2">
+<h3 id="_influência_do_vetor_de_nós_e_da_ordem_na_forma_das_curvas_nurbs">2.2. Influência do Vetor de Nós e da Ordem na Forma das Curvas NURBS</h3>
+<div class="paragraph">
+<p>O vetor de nós influencia diretamente como os pontos de controle afetam a curva NURBS. Um vetor uniforme gera uma curva suave, mas que normalmente não passa pelos pontos inicial e final. Já o vetor uniforme aberto, o mais comum, repete os nós nas extremidades, fazendo a curva começar e terminar exatamente nos pontos extremos, o que facilita a modelagem. O vetor não uniforme permite espaçamentos irregulares, oferecendo maior controle local sobre a forma da curva.</p>
+</div>
+<div class="paragraph">
+<p>A ordem da curva também afeta seu comportamento: curvas de ordem mais baixa (como a quadrática) são menos suaves e mais próximas dos pontos de controle. Curvas de ordem mais alta (como a quártica) são mais suaves e soltas, pois cada ponto de controle influencia um trecho maior da curva.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_diferenças_entre_curvas_bézier_e_nurbs_de_mesma_ordem">2.3. Diferenças entre Curvas Bézier e NURBS de Mesma Ordem</h3>
+<div class="paragraph">
+<p>Ao comparar curvas de Bèzier e NURBS de ordens iguais, a principal diferença é o tipo de controle. Bèzier possui controle global, onde mover um ponto afeta toda a extensão da curva. NURBS oferece controle local, permitindo modificar uma parte da curva sem alterar o resto, o que é uma vantagem imensa para designs complexos. Além disso, NURBS são matematicamente superiores por serem "racionais", o que lhes permite representar perfeitamente formas como círculos, algo que as curvas de Bèzier não conseguem fazer. Na prática, uma curva de Bèzier é apenas um caso especial e mais simples de uma curva NURBS.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_bibliografia">3. Bibliografia</h2>
+<h2 id="_desenhando_linhas_e_pontos">3. Desenhando Linhas e Pontos</h2>
 <div class="sectionbody">
-<div class="ulist bibliography">
-<ul class="bibliography">
-<li>
-<p>Stephen Prata. 'C++ Primer Plus'. Addison-Wesley. 1990. 2 ed.</p>
-</li>
-<li>
-<p><a href="http://www.cplusplus.com" class="bare">http://www.cplusplus.com</a>. 'Principal portal de desenvolvimento e referência para programação em C++'.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Esta seção aborda algoritmos fundamentais para a rasterização de primitivas gráficas, como pontos, linhas e circunferências.</p>
+</div>
+<div class="sect2">
+<h3 id="_quadrado">3.1. Quadrado</h3>
+<div class="paragraph">
+<p>O primeiro programa (<code>quadrado.c</code>) renderiza um quadrado simples na tela, utilizando funções básicas do OpenGL para desenhar linhas e pontos.</p>
+</div>
+<div id="exa_quadrado" class="listingblock">
+<div class="title">Listagem 3. quadrado.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+
+// Variável global para controlar a cor do quadrado
+// 0 para vermelho, 1 para azul
+int corQuadrado = 0; 
+
+void init(void);
+void display(void);
+void keyboard(unsigned char key, int x, int y);
+
+int main(int argc, char** argv){
+  glutInit(&amp;argc, argv);
+  glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+  glutInitWindowSize (256, 256); 
+  glutInitWindowPosition (100, 100); 
+  glutCreateWindow ("Desenhando um Quadrado");
+  init();
+  glutDisplayFunc(display); 
+  glutKeyboardFunc(keyboard);
+  glutMainLoop();
+  return 0;
+}
+
+void init(void){
+  // Define o fundo da janela como branco
+  glClearColor(1.0, 1.0, 1.0, 1.0); 
+  // Define o sistema de coordenadas ortográfico
+  // (0,0) é o canto inferior esquerdo e (256,256) é o canto superior direito
+  glOrtho (0, 256, 0, 256, -1 ,1);
+}
+
+void display(void){
+  glClear(GL_COLOR_BUFFER_BIT);
+
+  // Define a cor do quadrado com base na variável corQuadrado
+  if (corQuadrado == 0) { // Vermelho
+    glColor3f (1.0, 0.0, 0.0); 
+  } else { // Azul
+    glColor3f (0.0, 0.0, 1.0); 
+  }
+  
+  // Desenha o quadrado usando GL_QUADS
+  glBegin(GL_QUADS);
+  // Vértice superior esquerdo: (30, 226)
+  glVertex2i(30, 226); 
+  // Vértice superior direito: (226, 226)
+  glVertex2i(226, 226); 
+  // Vértice inferior direito: (226, 30)
+  glVertex2i(226, 30); 
+  // Vértice inferior esquerdo: (30, 30)
+  glVertex2i(30, 30); 
+  glEnd();
+
+  glFlush();
+}
+
+void keyboard(unsigned char key, int x, int y){
+  switch (key) {
+    case 'a': // Se 'a' for pressionado, muda para azul
+      corQuadrado = 1;
+      glutPostRedisplay(); // Redesenha a janela
+      break;
+    case 'v': // Se 'v' for pressionado, muda para vermelho
+      corQuadrado = 0;
+      glutPostRedisplay(); // Redesenha a janela
+      break;
+    case 27: // Tecla ESC para sair
+      exit(0);
+      break;
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_algoritmo_de_bresenham_para_linhas">3.2. Algoritmo de Bresenham para Linhas</h3>
+<div class="paragraph">
+<p>Este programa (<code>Bresenham_linhas.c</code>) implementa o algoritmo de Bresenham para desenhar linhas.</p>
+</div>
+<div id="exa_bresenham_linhas" class="listingblock">
+<div class="title">Listagem 4. Bresenham_linhas.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+
+void init(void);
+void display(void);
+void bresenham(int x0, int y0, int x1, int y1);
+
+int main(int argc, char** argv){
+    glutInit(&amp;argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize(256, 256);
+    glutInitWindowPosition(100, 100);
+    glutCreateWindow("Algoritmo de Bresenham"); // Título da janela
+    init();
+    glutDisplayFunc(display);
+    glutMainLoop();
+    return 0;
+}
+
+void init(void){
+    // Define o fundo da janela como branco
+    glClearColor(1.0, 1.0, 1.0, 1.0);
+    // Define o sistema de coordenadas
+    glOrtho(0, 256, 0, 256, -1, 1);
+}
+
+/**
+ * @brief Implementação generalizada do Algoritmo de Bresenham para traçado de linhas.
+ * * @param x0 Coordenada x do ponto inicial.
+ * @param y0 Coordenada y do ponto inicial.
+ * @param x1 Coordenada x do ponto final.
+ * @param y1 Coordenada y do ponto final.
+ */
+void bresenham(int x0, int y0, int x1, int y1) {
+    // Calcula as variações em x e y (sempre positivas)
+    int dx = abs(x1 - x0);
+    int dy = abs(y1 - y0);
+    
+    // Determina a direção do incremento para x e y (1 para positivo, -1 para negativo)
+    int sx = (x0 &lt; x1) ? 1 : -1;
+    int sy = (y0 &lt; y1) ? 1 : -1;
+    
+    // Parâmetro de decisão (erro)
+    int err = dx - dy;
+    
+    while (1) {
+        // Desenha o ponto atual
+        glVertex2i(x0, y0);
+        
+        // Se chegamos ao ponto final, paramos o loop
+        if (x0 == x1 &amp;&amp; y0 == y1) {
+            break;
+        }
+        
+        int e2 = 2 * err;
+        
+        // Decide se vamos dar um passo em x
+        if (e2 &gt; -dy) {
+            err -= dy;
+            x0 += sx;
+        }
+        
+        // Decide se vamos dar um passo em y
+        if (e2 &lt; dx) {
+            err += dx;
+            y0 += sy;
+        }
+    }
+}
+
+void display(void){
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    // Define a cor da linha como verde
+    glColor3f(0.0, 1.0, 0.0);
+    
+    // Inicia o modo de desenho de pontos
+    glBegin(GL_POINTS);
+        // Chama a função de Bresenham com as coordenadas especificadas
+        bresenham(40, 200, 200, 10);
+    glEnd();
+    
+    glFlush();
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_algoritmo_de_bresenham_para_circunferências">3.3. Algoritmo de Bresenham para Circunferências</h3>
+<div class="paragraph">
+<p>De forma análoga ao anterior, este programa (<code>Bresenham_circunferencia.c</code>) implementa o algoritmo de Bresenham para o desenho de circunferências.</p>
+</div>
+<div id="exa_bresenham_circunferencia" class="listingblock">
+<div class="title">Listagem 5. Bresenham_circunferencia.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+
+void init(void);
+void display(void);
+void bresenham_circle(int cx, int cy, int r);
+void plot_circle_points(int cx, int cy, int x, int y);
+
+int main(int argc, char** argv){
+    glutInit(&amp;argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize(256, 256);
+    glutInitWindowPosition(100, 100);
+    glutCreateWindow("Algoritmo de Bresenham para Circunferencias");
+    init();
+    glutDisplayFunc(display);
+    glutMainLoop();
+    return 0;
+}
+
+void init(void){
+    glClearColor(1.0, 1.0, 1.0, 1.0);
+    glOrtho(0, 256, 0, 256, -1, 1);
+}
+
+/**
+ * @brief Desenha um ponto (x,y) e seus 7 pontos simétricos na circunferência.
+ * @param cx Coordenada x do centro.
+ * @param cy Coordenada y do centro.
+ * @param x Deslocamento x a partir do centro.
+ * @param y Deslocamento y a partir do centro.
+ */
+void plot_circle_points(int cx, int cy, int x, int y) {
+    glVertex2i(cx + x, cy + y);
+    glVertex2i(cx - x, cy + y);
+    glVertex2i(cx + x, cy - y);
+    glVertex2i(cx - x, cy - y);
+    glVertex2i(cx + y, cy + x);
+    glVertex2i(cx - y, cy + x);
+    glVertex2i(cx + y, cy - x);
+    glVertex2i(cx - y, cy - x);
+}
+
+/**
+ * @brief Implementa o Algoritmo de Bresenham (Ponto Médio) para traçado de circunferências.
+ * @param cx Coordenada x do centro.
+ * @param cy Coordenada y do centro.
+ * @param r Raio da circunferência.
+ */
+void bresenham_circle(int cx, int cy, int r) {
+    int x = 0;
+    int y = r;
+    int p = 3 - 2 * r; // Parâmetro de decisão inicial
+
+    // Desenha os pontos iniciais antes de começar o loop
+    plot_circle_points(cx, cy, x, y);
+
+    while (x &lt;= y) {
+        x++; // Sempre incrementa x
+
+        // Se p &lt; 0, o ponto médio está dentro da circunferência
+        if (p &lt; 0) {
+            p = p + 4 * x + 6;
+        } 
+        // Se p &gt;= 0, o ponto médio está fora ou na circunferência
+        else {
+            y--; // Decrementa y
+            p = p + 4 * (x - y) + 10;
+        }
+        
+        // Desenha os 8 pontos simétricos para a nova posição (x,y)
+        plot_circle_points(cx, cy, x, y);
+    }
+}
+
+void display(void){
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    // Define a cor da circunferência como azul
+    glColor3f(0.0, 0.0, 1.0);
+    
+    // Inicia o modo de desenho de pontos
+    glBegin(GL_POINTS);
+        // Chama a função de Bresenham para a circunferência especificada
+        // Centro (128, 128) e raio 50
+        bresenham_circle(128, 128, 50);
+    glEnd();
+    
+    glFlush();
+}</code></pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_modelagem_de_sólidos">4. Modelagem de Sólidos</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_super_jato">4.1. Super-Jato</h3>
+<div class="paragraph">
+<p>A prática (<code>superjato.c</code>) consiste na modelagem de um objeto complexo, um avião a jato, utilizando as diversas técnicas aprendidas ao longo da disciplina, como desenho de primitivas, transformações e controle de câmera.</p>
+</div>
+<div id="exa_superjato" class="listingblock">
+<div class="title">Listagem 6. superjato.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+#include &lt;GL/glut.h&gt;
+
+#define PI 3.1415
+
+// Variáveis de estado da câmera e do jato
+GLint WIDTH = 800;
+GLint HEIGHT = 600;
+GLfloat obs[3] = {0.0, 7.0, 0.0};
+GLfloat look[3] = {0.0, 3.0, 0.0};
+GLfloat tetaxz = 0;
+GLfloat raioxz = 12; // Aumentei o raio inicial para uma visão melhor
+GLuint jato;
+
+// --- NOVA FUNÇÃO PARA DESENHAR UM MÍSSIL ---
+void desenha_missil(void)
+{
+    GLUquadricObj *quadric;
+
+    // Corpo do míssil (cinza escuro)
+    glColor3f(0.4f, 0.4f, 0.4f);
+    quadric = gluNewQuadric();
+    gluCylinder(quadric, 0.15, 0.15, 1.2, 10, 3);
+
+    // Ogiva do míssil (vermelha)
+    glColor3f(0.8f, 0.1f, 0.1f);
+    glPushMatrix();
+    glTranslatef(0, 0, 1.2);
+    quadric = gluNewQuadric();
+    gluCylinder(quadric, 0.15, 0.0, 0.4, 10, 3);
+    glPopMatrix();
+}
+
+// Função que constrói o jato usando uma Display List
+void compoe_jato(void)
+{
+    GLUquadricObj *quadric;
+
+    GLfloat asa[][3] = {
+        {-4.0, 0.0, 0.0},
+        {+4.0, 0.0, 0.0},
+        {0.0, 0.0, 3.0}};
+
+    GLfloat cauda[][3] = {
+        {0.0, 0.0, 0.0},
+        {0.0, 2.0, -1.0},
+        {0.0, 2.0, 0.0},
+        {0.0, 0.0, 2.0}};
+
+    jato = glGenLists(1);
+    glNewList(jato, GL_COMPILE);
+
+    // Cor principal do avião
+    glColor3f(0.2, 0.4, 0.15); // Verde militar
+
+    /* Asas */
+    glBegin(GL_TRIANGLES);
+    glVertex3fv(asa[0]);
+    glVertex3fv(asa[1]);
+    glVertex3fv(asa[2]);
+    glEnd();
+
+    /* Corpo */
+    quadric = gluNewQuadric();
+    gluCylinder(quadric, 0.5, 0.5, 4, 12, 3);
+
+    /* Nariz */
+    quadric = gluNewQuadric();
+    glPushMatrix();
+    glTranslatef(0, 0, 4);
+    gluCylinder(quadric, 0.5, 0.0, 1.5, 12, 3);
+    glPopMatrix();
+
+    /* Cauda */
+    glBegin(GL_POLYGON);
+    glVertex3fv(cauda[0]);
+    glVertex3fv(cauda[1]);
+    glVertex3fv(cauda[2]);
+    glVertex3fv(cauda[3]);
+    glEnd();
+
+    /* Cabine do piloto */
+    glPushMatrix();
+        glTranslatef(0, 0.3, 3.5);
+        glPushMatrix();
+        glScalef(0.7, 0.7, 2.0);
+        quadric = gluNewQuadric();
+        glColor4f(0.3, 0.5, 1.0, 0.5); // Azul semitransparente
+        gluSphere(quadric, 0.5, 12, 12);
+        glPopMatrix();
+    glPopMatrix();
+
+    // --- ADIÇÃO DA TURBINA ---
+    glPushMatrix();
+        // Move para a traseira do corpo do jato
+        glTranslatef(0.0, 0.0, -0.25);
+        // Carcaça da turbina (cinza escuro)
+        glColor3f(0.3f, 0.3f, 0.3f);
+        quadric = gluNewQuadric();
+        gluCylinder(quadric, 0.6, 0.6, 0.5, 12, 3);
+        // Bocal de exaustão (laranja/amarelo para simular fogo)
+        glColor3f(1.0f, 0.8f, 0.0f);
+        quadric = gluNewQuadric();
+        gluDisk(quadric, 0.0, 0.4, 12, 3);
+    glPopMatrix();
+
+    // --- ADIÇÃO DOS MÍSSEIS ---
+    // Míssil da asa direita
+    glPushMatrix();
+        glTranslatef(2.0, -0.3, 1.5);
+        desenha_missil();
+    glPopMatrix();
+
+    // Míssil da asa esquerda
+    glPushMatrix();
+        glTranslatef(-2.0, -0.3, 1.5);
+        desenha_missil();
+    glPopMatrix();
+
+    glEndList();
+}
+
+void display(void)
+{
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    glClearColor(0.7, 0.8, 1.0, 1.0); // Fundo azul claro (céu)
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glPushMatrix();
+
+    // Calcula a posição do observador
+    obs[0] = raioxz * cos(2 * PI * tetaxz / 360);
+    obs[2] = raioxz * sin(2 * PI * tetaxz / 360);
+    gluLookAt(obs[0], obs[1], obs[2], look[0], look[1], look[2], 0.0, 1.0, 0.0);
+
+    // Desenha o chão (sem textura)
+    glColor3f(0.4f, 0.6f, 0.2f); // Chão verde
+    glBegin(GL_QUADS);
+    glVertex3f(-20, 0, 20);
+    glVertex3f(20, 0, 20);
+    glVertex3f(20, 0, -20);
+    glVertex3f(-20, 0, -20);
+    glEnd();
+
+    // Desenha o jato
+    glPushMatrix();
+    glTranslatef(0.0, 4.0, 0.0); // Posição do jato no ar
+    glCallList(jato);
+    glPopMatrix();
+
+    glPopMatrix();
+    glutSwapBuffers();
+}
+
+void reshape(int width, int height)
+{
+    WIDTH = width;
+    HEIGHT = height;
+    glViewport(0, 0, (GLint)width, (GLint)height);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(70.0, width / (float)height, 0.1, 40.0);
+    glMatrixMode(GL_MODELVIEW);
+}
+
+void special(int key, int x, int y)
+{
+    switch (key)
+    {
+    case GLUT_KEY_UP:
+        obs[1] = obs[1] + 0.5;
+        glutPostRedisplay();
+        break;
+    case GLUT_KEY_DOWN:
+        obs[1] = obs[1] - 0.5;
+        glutPostRedisplay();
+        break;
+    case GLUT_KEY_LEFT:
+        tetaxz = tetaxz + 2;
+        glutPostRedisplay();
+        break;
+    case GLUT_KEY_RIGHT:
+        tetaxz = tetaxz - 2;
+        glutPostRedisplay();
+        break;
+    }
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+    switch (key)
+    {
+    case 27:
+        exit(0);
+        break;
+    case 'r':
+        raioxz = raioxz + 1;
+        glutPostRedisplay();
+        break;
+    case 'R':
+        raioxz = raioxz - 1;
+        if (raioxz == 0)
+        {
+            raioxz = 1;
+        }
+        glutPostRedisplay();
+        break;
+    }
+}
+
+void init()
+{
+    glEnable(GL_DEPTH_TEST);
+    compoe_jato();
+}
+
+int main(int argc, char **argv)
+{
+    glutInitWindowPosition(0, 0);
+    glutInitWindowSize(WIDTH, HEIGHT);
+    glutInit(&amp;argc, argv);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
+
+    if (!glutCreateWindow("Super Jato"))
+    {
+        fprintf(stderr, "Error opening a window.\n");
+        exit(-1);
+    }
+
+    init();
+
+    glutKeyboardFunc(keyboard);
+    glutSpecialFunc(special);
+    glutDisplayFunc(display);
+    glutReshapeFunc(reshape);
+    glutMainLoop();
+
+    return (0);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_logo_super_jato">4.2. Logo Super-Jato</h3>
+<div class="paragraph">
+<p>Este programa (<code>logo_superjato.c</code>) renderiza o logo do super-jato com a minha inicial EV.</p>
+</div>
+<div id="exa_logo_superjato" class="listingblock">
+<div class="title">Listagem 7. logo_superjato.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+#include &lt;GL/glut.h&gt;
+
+#define PI 3.1415
+
+GLint WIDTH = 800;
+GLint HEIGHT = 800;
+GLfloat obs[3] = {0.0, 7.0, 0.0};
+GLfloat look[3] = {0.0, 3.0, 0.0};
+GLfloat tetaxz = 0;
+GLfloat raioxz = 12;
+GLuint jato;
+GLuint textura_logo;
+
+// --- Função para carregar a textura IRIS RGB (64x64 RGB raw) ---
+void carrega_textura_logo(const char *filename)
+{
+    FILE *file = fopen(filename, "rb");
+    if (!file)
+    {
+        printf("Erro ao abrir o arquivo de textura: %s\n", filename);
+        exit(1);
+    }
+
+    // Certifique-se que estas dimensões correspondem ao seu arquivo logo.rgb
+    int width = 30;
+    int height = 30;
+    int size = width * height * 3;
+    GLubyte *data = (GLubyte *)malloc(size);
+    fread(data, 1, size, file);
+    fclose(file);
+
+    glGenTextures(1, &amp;textura_logo);
+    glBindTexture(GL_TEXTURE_2D, textura_logo);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+
+    free(data);
+}
+
+// --- Função para desenhar um míssil ---
+void desenha_missil(void)
+{
+    GLUquadricObj *quadric;
+    glColor3f(0.4f, 0.4f, 0.4f);
+    quadric = gluNewQuadric();
+    gluCylinder(quadric, 0.15, 0.15, 1.2, 10, 3);
+
+    glColor3f(0.8f, 0.1f, 0.1f);
+    glPushMatrix();
+    glTranslatef(0, 0, 1.2);
+    quadric = gluNewQuadric();
+    gluCylinder(quadric, 0.15, 0.0, 0.4, 10, 3);
+    glPopMatrix();
+}
+
+// --- Função que compõe o jato ---
+void compoe_jato(void)
+{
+    GLUquadricObj *quadric;
+    GLfloat asa[][3] = {
+        {-4.0, 0.0, 0.0},
+        {+4.0, 0.0, 0.0},
+        {0.0, 0.0, 3.0}};
+
+    GLfloat cauda[][3] = {
+        {0.0, 0.0, 0.0},
+        {0.0, 2.0, -1.0},
+        {0.0, 2.0, 0.0},
+        {0.0, 0.0, 2.0}};
+
+    jato = glGenLists(1);
+    glNewList(jato, GL_COMPILE);
+
+    // Cor base do jato
+    glColor3f(0.2, 0.4, 0.15); 
+
+    /* 1. Desenha a asa primeiro */
+    glBegin(GL_TRIANGLES);
+        glVertex3fv(asa[0]);
+        glVertex3fv(asa[1]);
+        glVertex3fv(asa[2]);
+    glEnd();
+    
+    
+    /* 2. Desenha o logo como "decalque" sobre a asa direita */
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, textura_logo);
+    
+    // Usar branco para a cor do material faz com que a textura apareça com suas cores originais
+    glColor3f(1.0f, 1.0f, 1.0f); 
+
+    // Um pequeno deslocamento em Y para evitar "Z-fighting" (textura "brigando" com o polígono da asa)
+    GLfloat y_offset = 0.01f; 
+
+    // ======== CÓDIGO CORRIGIDO PARA O LOGO ========
+    // O centro da asa direita está perto de x=1.5, z=1.0.
+    // Desenhamos um quad de 1x1 unidade centrado nesse ponto.
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0, 0.0); glVertex3f(1.0, y_offset, 0.5); // Canto inferior esquerdo
+        glTexCoord2f(1.0, 0.0); glVertex3f(2.0, y_offset, 0.5); // Canto inferior direito
+        glTexCoord2f(1.0, 1.0); glVertex3f(2.0, y_offset, 1.5); // Canto superior direito
+        glTexCoord2f(0.0, 1.0); glVertex3f(1.0, y_offset, 1.5); // Canto superior esquerdo
+    glEnd();
+    // ===============================================
+
+    glDisable(GL_TEXTURE_2D);
+
+    // 3. Volta para a cor verde para desenhar o resto do jato
+    glColor3f(0.2, 0.4, 0.15); 
+
+    /* Corpo */
+    quadric = gluNewQuadric();
+    gluCylinder(quadric, 0.5, 0.5, 4, 12, 3);
+
+    /* Nariz */
+    quadric = gluNewQuadric();
+    glPushMatrix();
+    glTranslatef(0, 0, 4);
+    gluCylinder(quadric, 0.5, 0.0, 1.5, 12, 3);
+    glPopMatrix();
+
+    /* Cauda */
+    glBegin(GL_POLYGON);
+    glVertex3fv(cauda[0]);
+    glVertex3fv(cauda[1]);
+    glVertex3fv(cauda[2]);
+    glVertex3fv(cauda[3]);
+    glEnd();
+
+    /* Cabine */
+    glPushMatrix();
+        glTranslatef(0, 0.3, 3.5);
+        glPushMatrix();
+        glScalef(0.7, 0.7, 2.0);
+        quadric = gluNewQuadric();
+        glColor4f(0.3, 0.5, 1.0, 0.5);
+        gluSphere(quadric, 0.5, 12, 12);
+        glPopMatrix();
+    glPopMatrix();
+
+    /* Turbina */
+    glPushMatrix();
+        glTranslatef(0.0, 0.0, -0.25);
+        glColor3f(0.3f, 0.3f, 0.3f);
+        quadric = gluNewQuadric();
+        gluCylinder(quadric, 0.6, 0.6, 0.5, 12, 3);
+        glColor3f(1.0f, 0.8f, 0.0f);
+        quadric = gluNewQuadric();
+        gluDisk(quadric, 0.0, 0.4, 12, 3);
+    glPopMatrix();
+
+    /* Mísseis */
+    glPushMatrix();
+        glTranslatef(2.0, -0.3, 1.5);
+        desenha_missil();
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(-2.0, -0.3, 1.5);
+        desenha_missil();
+    glPopMatrix();
+
+    glEndList();
+}
+
+void display(void)
+{
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    glClearColor(0.7, 0.8, 1.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glPushMatrix();
+    obs[0] = raioxz * cos(2 * PI * tetaxz / 360);
+    obs[2] = raioxz * sin(2 * PI * tetaxz / 360);
+    gluLookAt(obs[0], obs[1], obs[2], look[0], look[1], look[2], 0.0, 1.0, 0.0);
+
+    // Chão
+    glColor3f(0.4f, 0.6f, 0.2f);
+    glBegin(GL_QUADS);
+    glVertex3f(-20, 0, 20);
+    glVertex3f(20, 0, 20);
+    glVertex3f(20, 0, -20);
+    glVertex3f(-20, 0, -20);
+    glEnd();
+
+    // Jato
+    glPushMatrix();
+    glTranslatef(0.0, 4.0, 0.0);
+    glCallList(jato);
+    glPopMatrix();
+
+    glPopMatrix();
+    glutSwapBuffers();
+}
+
+void reshape(int width, int height)
+{
+    WIDTH = width;
+    HEIGHT = height;
+    glViewport(0, 0, (GLint)width, (GLint)height);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(70.0, width / (float)height, 0.1, 40.0);
+    glMatrixMode(GL_MODELVIEW);
+}
+
+void special(int key, int x, int y)
+{
+    switch (key)
+    {
+    case GLUT_KEY_UP:    obs[1] += 0.5; break;
+    case GLUT_KEY_DOWN:  obs[1] -= 0.5; break;
+    case GLUT_KEY_LEFT:  tetaxz += 2; break;
+    case GLUT_KEY_RIGHT: tetaxz -= 2; break;
+    }
+    glutPostRedisplay();
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+    switch (key)
+    {
+    case 27: exit(0); break;
+    case 'r': raioxz += 1; break;
+    case 'R':
+        raioxz -= 1;
+        if (raioxz &lt;= 0) raioxz = 1;
+        break;
+    }
+    glutPostRedisplay();
+}
+
+void init()
+{
+    glEnable(GL_DEPTH_TEST);
+    carrega_textura_logo("logo.rgb"); // &lt;-- Carrega o logotipo
+    compoe_jato();
+}
+
+int main(int argc, char **argv)
+{
+    glutInitWindowPosition(0, 0);
+    glutInitWindowSize(WIDTH, HEIGHT);
+    glutInit(&amp;argc, argv);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
+
+    if (!glutCreateWindow("Super Jato com Logotipo"))
+    {
+        fprintf(stderr, "Erro ao abrir janela.\n");
+        exit(-1);
+    }
+
+    init();
+    glutKeyboardFunc(keyboard);
+    glutSpecialFunc(special);
+    glutDisplayFunc(display);
+    glutReshapeFunc(reshape);
+    glutMainLoop();
+
+    return 0;
+}</code></pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_modelos_de_iluminação_e_sombreamento">5. Modelos de Iluminação e Sombreamento</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Este projeto (<code>iluminacao2.c</code>) explora o modelo de iluminação de Phong, que combina componentes de iluminação ambiente, difusa e especular para criar um sombreamento mais realista nos objetos 3D.</p>
+</div>
+<div id="exa_iluminacao" class="listingblock">
+<div class="title">Listagem 8. iluminacao2.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+#include &lt;GL/glut.h&gt;
+
+
+#define PI 3.1415
+
+GLint WIDTH =320;
+GLint HEIGHT=240;
+
+// (As definições de materiais, luzes e posições permanecem as mesmas)
+GLfloat plano_difusa[]    = { 0.5, 0.5, 0.0, 1.0 };
+GLfloat plano_especular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat plano_brilho[]    = { 50.0 };
+GLfloat mat_a_difusa[]    = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat mat_a_especular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat mat_a_brilho[]    = { 50.0 };
+GLfloat mat_b_difusa[]    = { 0.7, 0.7, 0.7, 0.5 };
+GLfloat mat_b_especular[] = { 1.0, 1.0, 1.0, 0.5 };
+GLfloat mat_b_brilho[]    = { 50.0 };
+GLfloat posicao_luz0[]    = { 0.0, 10.0, 0.0, 1.0};
+GLfloat cor_luz0[]        = { 1.0, 1.0, 1.0, 1.0};
+GLfloat cor_luz0_amb[]    = { 0.3, 0.3, 0.3, 1.0};
+GLfloat posicao_luz1[]    = { 0.0, 10.0, 5.0, 1.0};
+GLfloat cor_luz1[]        = { 0.0, 0.0, 1.0, 1.0};
+GLfloat direcao_luz1[]    = { 0.0, -10.0, -5.0, 1.0};
+GLint   spot_luz1         = 30;
+GLfloat sem_cor[]         = { 0.0, 0.0, 0.0, 1.0};
+GLfloat obs[3]={0.0,7.0,0.0};
+GLfloat olho[3]={0.0,3.0,0.0};
+GLfloat tetaxz=0;
+GLfloat raioxz=6;
+
+// Protótipo da nova função de movimento do mouse
+void motion(int x, int y);
+
+void reshape(int width, int height){
+  WIDTH=width;
+  HEIGHT=height;
+  glViewport(0,0,(GLint)width,(GLint)height);
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  gluPerspective(70.0,width/(float)height,0.1,30.0);
+  glMatrixMode(GL_MODELVIEW);
+}
+
+void display(void){
+  glEnable(GL_DEPTH_TEST);
+  glEnable(GL_LIGHTING);
+
+  glDepthMask(GL_TRUE);
+  glClearColor(1.0,1.0,1.0,1.0);
+  glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+
+  glShadeModel(GL_SMOOTH);
+  
+  glPushMatrix();
+
+  obs[0]=raioxz*cos(2*PI*tetaxz/360);
+  obs[2]=raioxz*sin(2*PI*tetaxz/360);
+  gluLookAt(obs[0],obs[1],obs[2],olho[0],olho[1],olho[2],0.0,1.0,0.0);
+  
+  // A luz ambiente é atualizada aqui a cada quadro
+  glLightfv(GL_LIGHT0, GL_AMBIENT, cor_luz0_amb);
+
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, plano_difusa);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, plano_especular);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, plano_brilho);
+  
+  glNormal3f(0,1,0); 
+  glBegin(GL_QUADS);
+  glVertex3f(-10,0,10); glVertex3f(10,0,10); glVertex3f(10,0,-10); glVertex3f(-10,0,-10);
+  glEnd();
+
+  glPushMatrix();
+  glTranslatef(posicao_luz0[0],posicao_luz0[1],posicao_luz0[2]);
+  glMaterialfv(GL_FRONT, GL_EMISSION, cor_luz0);
+  glutSolidSphere(0.3,5,5);
+  glPopMatrix();
+
+  glPushMatrix();
+  glTranslatef(posicao_luz1[0],posicao_luz1[1],posicao_luz1[2]);
+  glMaterialfv(GL_FRONT, GL_EMISSION, cor_luz1);
+  glutSolidSphere(0.3,5,5);
+  glPopMatrix();
+
+  glMaterialfv(GL_FRONT, GL_EMISSION, sem_cor);
+
+  // Esfera A (traseira, opaca)
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_a_difusa);
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_a_especular);
+  glMaterialfv(GL_FRONT, GL_SHININESS, mat_a_brilho);
+  glPushMatrix();
+  glTranslatef(0.0,3.0,-3.0);
+  glutSolidSphere(1.5,30,30);
+  glPopMatrix();
+
+  // Esfera B (frontal, com transparência variável)
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_b_difusa);
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_b_especular);
+  glMaterialfv(GL_FRONT, GL_SHININESS, mat_b_brilho);
+  glTranslatef(0.0,+3.0,+3.0);
+  glutSolidSphere(1.5,30,30);
+
+  glPopMatrix();
+  glutSwapBuffers();
+}
+
+// --- NOVA FUNÇÃO DE MOVIMENTO PASSIVO DO MOUSE ---
+void motion(int x, int y){
+    // Verifica se a tecla SHIFT está pressionada
+    int mod = glutGetModifiers();
+
+    if (mod == GLUT_ACTIVE_SHIFT) {
+        // --- MODO: MUDAR LUZ AMBIENTE ---
+        // Mapeia a posição Y do mouse (0 a HEIGHT) para um nível de luz (0.0 a 1.0)
+        // O Y do mouse é invertido (0 no topo), então subtraímos de HEIGHT
+        GLfloat light_level = (GLfloat)(HEIGHT - y) / (GLfloat)HEIGHT;
+        // Garante que o valor fique entre 0.0 e 1.0
+        if (light_level &lt; 0.0) light_level = 0.0;
+        if (light_level &gt; 1.0) light_level = 1.0;
+
+        printf("Nivel de Luz Ambiente: %.2f\n", light_level);
+        // Atualiza os componentes R, G e B da luz ambiente
+        cor_luz0_amb[0] = light_level;
+        cor_luz0_amb[1] = light_level;
+        cor_luz0_amb[2] = light_level;
+
+    } else {
+        // --- MODO: MUDAR TRANSPARÊNCIA ---
+        // Mapeia a posição X do mouse (0 a WIDTH) para um valor alpha (0.0 a 1.0)
+        GLfloat alpha = (GLfloat)x / (GLfloat)WIDTH;
+        // Garante que o valor fique entre 0.0 e 1.0
+        if (alpha &lt; 0.0) alpha = 0.0;
+        if (alpha &gt; 1.0) alpha = 1.0;
+
+        printf("Nivel de Alpha (Transparencia): %.2f\n", alpha);
+        // Atualiza o 4º componente (alpha) do material B
+        mat_b_difusa[3] = alpha;
+        mat_b_especular[3] = alpha;
+    }
+
+    // Solicita que a janela seja redesenhada para aplicar as mudanças
+    glutPostRedisplay();
+}
+
+void special(int key, int x, int y){
+  switch (key) {
+  case GLUT_KEY_UP:    obs[1]=obs[1]+1; glutPostRedisplay(); break;
+  case GLUT_KEY_DOWN:  obs[1] =obs[1]-1; glutPostRedisplay(); break;
+  case GLUT_KEY_LEFT:  tetaxz=tetaxz+2; glutPostRedisplay(); break;
+  case GLUT_KEY_RIGHT: tetaxz=tetaxz-2; glutPostRedisplay(); break;
+  }
+}
+
+void keyboard(unsigned char key, int x, int y){
+  switch (key) {
+  case 27: exit(0); break;
+  case 'r': raioxz=raioxz+1; glutPostRedisplay(); break;
+  case 'R': if(raioxz&gt;1) { raioxz=raioxz-1; glutPostRedisplay(); } break;
+  }
+}
+
+void init(){
+  glEnable(GL_DEPTH_TEST);
+  // Habilita o blending (necessário para transparência)
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+
+  glLightfv(GL_LIGHT0, GL_DIFFUSE, cor_luz0);
+  glLightfv(GL_LIGHT0, GL_SPECULAR, cor_luz0);
+  glLightfv(GL_LIGHT0, GL_AMBIENT, cor_luz0_amb);
+  glLightfv(GL_LIGHT0, GL_POSITION, posicao_luz0);
+
+  glLightfv(GL_LIGHT1, GL_DIFFUSE, cor_luz1);
+  glLightfv(GL_LIGHT1, GL_SPECULAR, cor_luz1);
+  glLightf (GL_LIGHT1, GL_SPOT_CUTOFF, spot_luz1);
+  glLightfv(GL_LIGHT1, GL_POSITION, posicao_luz1);
+  glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, direcao_luz1);
+
+  glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+  glEnable(GL_LIGHT1);
+
+  glEnable(GL_AUTO_NORMAL);
+  glEnable(GL_NORMALIZE);
+}
+
+int main(int argc,char **argv){
+  glutInitWindowPosition(0,0);
+  glutInitWindowSize(WIDTH,HEIGHT);
+  glutInit(&amp;argc,argv);
+  glutInitDisplayMode(GLUT_RGB|GLUT_DEPTH|GLUT_DOUBLE);
+
+  if(!glutCreateWindow("Iluminacao Interativa 2")) {
+    fprintf(stderr,"Error opening a window.\n");
+    exit(-1);
+  }
+
+  init();
+  
+  glutKeyboardFunc(keyboard);
+  glutSpecialFunc(special);
+  glutDisplayFunc(display);
+  glutReshapeFunc(reshape);
+  // ---- NOVO: Registra a função de movimento passivo do mouse ----
+  glutPassiveMotionFunc(motion);
+  
+  glutMainLoop();
+  return(0);
+}</code></pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preenchimento_de_regiões">6. Preenchimento de Regiões</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Esta seção aborda técnicas para preenchimento de polígonos e seleção de objetos.</p>
+</div>
+<div class="sect2">
+<h3 id="_nome_e_sobrenome">6.1. Nome e Sobrenome</h3>
+<div class="paragraph">
+<p>O programa <code>nome_sobrenome.c</code> implementa o algoritmo de preenchimento de polígonos conhecido como Scan-Line para renderizar as iniciais do meu nome e sobrenome (EV).</p>
+</div>
+<div id="exa_nome_sobrenome" class="listingblock">
+<div class="title">Listagem 9. nome_sobrenome.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt; // Necessário para memset
+#include &lt;math.h&gt;
+
+#define PI 3.14159265358979323846
+
+// Array que receberá o padrão no formato correto do OpenGL
+GLubyte ev_pattern[128];
+
+// Matriz 32x32 onde 1 = pixel aceso, 0 = pixel apagado.
+// Este é o nosso "gabarito" visual, exatamente como deve aparecer.
+char visual_pattern[32][32] = {
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0},
+    {0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0},
+    {0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0},
+    {0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0},
+    {0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0},
+    {0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0},
+    {0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+};
+
+// Função que converte o desenho para o formato do OpenGL, agora com a lógica de bits corrigida
+void create_stipple_pattern(const char visual[32][32], GLubyte stipple[128]) {
+    memset(stipple, 0, 128);
+
+    for (int r = 0; r &lt; 32; r++) { 
+        for (int c = 0; c &lt; 32; c++) { 
+            if (visual[r][c] == 1) {
+                int stipple_row = 31 - r;
+                int byte_index = stipple_row * 4 + (c / 8);
+                
+                // --- CORREÇÃO FINAL: Inverte a ordem dos bits dentro do byte ---
+                // O pixel da esquerda (coluna 0 de um byte) corresponde ao bit mais significativo (bit 7).
+                int bit_index_visual = c % 8;
+                int bit_index_opengl = 7 - bit_index_visual;
+                // -------------------------------------------------------------
+                
+                stipple[byte_index] |= (1 &lt;&lt; bit_index_opengl);
+            }
+        }
+    }
+}
+
+
+void init(void) {
+    glClearColor(1.0, 1.0, 1.0, 1.0); // Fundo branco
+    glOrtho(0, 300, 0, 300, -1, 1);
+    create_stipple_pattern(visual_pattern, ev_pattern);
+}
+
+void drawHexagon(float cx, float cy, float radius) {
+    glBegin(GL_POLYGON);
+    for (int i = 0; i &lt; 6; ++i) {
+        float angle = (PI / 3.0f * i) + (PI / 6.0f);
+        float x = cx + radius * cos(angle);
+        float y = cy + radius * sin(angle);
+        glVertex2f(x, y);
+    }
+    glEnd();
+}
+
+void display(void) {
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glColor3f(0.0, 0.0, 1.0); // Azul
+
+    glEnable(GL_POLYGON_STIPPLE);
+    glPolygonStipple(ev_pattern);
+
+    drawHexagon(150, 150, 100); 
+
+    glDisable(GL_POLYGON_STIPPLE);
+
+    glFlush();
+}
+
+void keyboard(unsigned char key, int x, int y) {
+    if (key == 27) exit(0);
+}
+
+int main(int argc, char** argv) {
+    glutInit(&amp;argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize(300, 300);
+    glutInitWindowPosition(100, 100);
+    glutCreateWindow("Hexagono com EV");
+    init();
+    glutDisplayFunc(display);
+    glutKeyboardFunc(keyboard);
+    glutMainLoop();
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_seleção">6.2. Seleção</h3>
+<div class="paragraph">
+<p>O programa <code>selecao.c</code> implementa uma técnica de seleção de objetos (picking) usando o modo <code>GL_SELECT</code> do OpenGL. Isso permite que o usuário identifique e interaja com os quadrados da cena clicando sobre eles.</p>
+</div>
+<div id="exa_selecao" class="listingblock">
+<div class="title">Listagem 10. selecao.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdio.h&gt;
+
+typedef enum {
+    MODE_FILL,
+    MODE_BORDER
+} EditMode;
+
+typedef struct {
+    GLfloat fill_r, fill_g, fill_b;
+    GLfloat border_r, border_g, border_b;
+} PolygonState;
+
+PolygonState polygons[4];
+EditMode current_mode = MODE_FILL;
+const int WINDOW_HEIGHT = 256;
+
+void init(void);
+void display(void);
+void keyboard(unsigned char key, int x, int y);
+void mouse(int button, int state, int x, int y);
+void drawPolygon(int id);
+
+int main(int argc, char** argv) {
+    glutInit(&amp;argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+    glutInitWindowSize(256, 256);
+    glutInitWindowPosition(100, 100);
+    glutCreateWindow("Selecao de Poligonos");
+    init();
+    glutDisplayFunc(display);
+    glutKeyboardFunc(keyboard);
+    glutMouseFunc(mouse);
+    glutMainLoop();
+    return 0;
+}
+
+void init(void) {
+    glClearColor(1.0, 1.0, 1.0, 1.0);
+    glOrtho(0, 256, 0, 256, -1, 1);
+    srand(time(NULL));
+
+    for (int i = 0; i &lt; 4; i++) {
+        polygons[i].fill_r = 1.0f;
+        polygons[i].fill_g = 1.0f;
+        polygons[i].fill_b = 0.0f;
+        polygons[i].border_r = 0.0f;
+        polygons[i].border_g = 0.0f;
+        polygons[i].border_b = 0.0f;
+    }
+}
+
+// ---- Função de Desenho (CORRIGIDA) ----
+void display(void) {
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    for (int i = 0; i &lt; 4; i++) {
+        // --- Passada 1: Preenchimento ---
+        glEnable(GL_POLYGON_OFFSET_FILL);
+        glPolygonOffset(1.0f, 1.0f);
+        
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        glColor3f(polygons[i].fill_r, polygons[i].fill_g, polygons[i].fill_b);
+        drawPolygon(i);
+        
+        glDisable(GL_POLYGON_OFFSET_FILL);
+
+        // --- Passada 2: Borda ---
+        glLineWidth(2.0f);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        glColor3f(polygons[i].border_r, polygons[i].border_g, polygons[i].border_b);
+        drawPolygon(i);
+    }
+
+    glutSwapBuffers();
+}
+
+void drawPolygon(int id) {
+    glBegin(GL_POLYGON);
+    switch (id) {
+        case 0: // Superior Esquerdo
+            glVertex2i(30, 226);  glVertex2i(113, 226);
+            glVertex2i(113, 143); glVertex2i(30, 143);
+            break;
+        case 1: // Superior Direito
+            glVertex2i(143, 226); glVertex2i(226, 226);
+            glVertex2i(226, 143); glVertex2i(143, 143);
+            break;
+        case 2: // Inferior Esquerdo
+            glVertex2i(30, 113);  glVertex2i(113, 113);
+            glVertex2i(113, 30);  glVertex2i(30, 30);
+            break;
+        case 3: // Inferior Direito
+            glVertex2i(143, 113); glVertex2i(226, 113);
+            glVertex2i(226, 30);  glVertex2i(143, 30);
+            break;
+    }
+    glEnd();
+}
+
+void keyboard(unsigned char key, int x, int y) {
+    switch (key) {
+        case 'b': case 'B':
+            current_mode = MODE_BORDER;
+            printf("Modo: Mudar cor da BORDA\n");
+            break;
+        case 'f': case 'F':
+            current_mode = MODE_FILL;
+            printf("Modo: Mudar cor do FUNDO\n");
+            break;
+        case 27:
+            exit(0);
+            break;
+    }
+}
+
+void mouse(int button, int state, int x, int y) {
+    if (button == GLUT_LEFT_BUTTON &amp;&amp; state == GLUT_DOWN) {
+        int ogl_y = WINDOW_HEIGHT - y;
+        int selected_polygon = -1;
+
+        if ((x &gt; 30 &amp;&amp; x &lt; 113) &amp;&amp; (ogl_y &gt; 143 &amp;&amp; ogl_y &lt; 226))   selected_polygon = 0;
+        if ((x &gt; 143 &amp;&amp; x &lt; 226) &amp;&amp; (ogl_y &gt; 143 &amp;&amp; ogl_y &lt; 226))  selected_polygon = 1;
+        if ((x &gt; 30 &amp;&amp; x &lt; 113) &amp;&amp; (ogl_y &gt; 30 &amp;&amp; ogl_y &lt; 113))    selected_polygon = 2;
+        if ((x &gt; 143 &amp;&amp; x &lt; 226) &amp;&amp; (ogl_y &gt; 30 &amp;&amp; ogl_y &lt; 113))   selected_polygon = 3;
+
+        if (selected_polygon != -1) {
+            printf("Poligono %d selecionado.\n", selected_polygon);
+            GLfloat r = (GLfloat)rand() / RAND_MAX;
+            GLfloat g = (GLfloat)rand() / RAND_MAX;
+            GLfloat b = (GLfloat)rand() / RAND_MAX;
+
+            if (current_mode == MODE_FILL) {
+                polygons[selected_polygon].fill_r = r;
+                polygons[selected_polygon].fill_g = g;
+                polygons[selected_polygon].fill_b = b;
+            } else { // MODE_BORDER
+                polygons[selected_polygon].border_r = r;
+                polygons[selected_polygon].border_g = g;
+                polygons[selected_polygon].border_b = b;
+            }
+            glutPostRedisplay();
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_seleção_com_buffer">6.3. Seleção com Buffer</h3>
+<div class="paragraph">
+<p>Uma abordagem alternativa para a seleção é implementada em <code>selecao_buffer.c</code>. Esta técnica utiliza um buffer de cor auxiliar.</p>
+</div>
+<div id="exa_selecao_buffer" class="listingblock">
+<div class="title">Listagem 11. selecao_buffer.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdio.h&gt;
+
+// ... (as structs e variáveis globais permanecem as mesmas) ...
+typedef enum { MODE_FILL, MODE_BORDER } EditMode;
+typedef struct {
+    GLfloat fill_r, fill_g, fill_b;
+    GLfloat border_r, border_g, border_b;
+} PolygonState;
+
+PolygonState polygons[4];
+EditMode current_mode = MODE_FILL;
+const int WINDOW_HEIGHT = 256;
+
+void init(void);
+void display(void);
+void keyboard(unsigned char key, int x, int y);
+void mouse(int button, int state, int x, int y);
+void drawPolygon(int id);
+
+int main(int argc, char** argv) {
+    glutInit(&amp;argc, argv);
+    // ----- MUDANÇA 1: De GLUT_DOUBLE para GLUT_SINGLE -----
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    // ----------------------------------------------------
+    glutInitWindowSize(256, 256);
+    glutInitWindowPosition(100, 100);
+    glutCreateWindow("Selecao de Poligonos (Buffer Simples)");
+    init();
+    glutDisplayFunc(display);
+    glutKeyboardFunc(keyboard);
+    glutMouseFunc(mouse);
+    glutMainLoop();
+    return 0;
+}
+
+void init(void) {
+    glClearColor(1.0, 1.0, 1.0, 1.0);
+    glOrtho(0, 256, 0, 256, -1, 1);
+    srand(time(NULL));
+
+    for (int i = 0; i &lt; 4; i++) {
+        polygons[i].fill_r = 1.0f;
+        polygons[i].fill_g = 1.0f;
+        polygons[i].fill_b = 0.0f;
+        polygons[i].border_r = 0.0f;
+        polygons[i].border_g = 0.0f;
+        polygons[i].border_b = 0.0f;
+    }
+}
+
+void display(void) {
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    for (int i = 0; i &lt; 4; i++) {
+        glEnable(GL_POLYGON_OFFSET_FILL);
+        glPolygonOffset(1.0f, 1.0f);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        glColor3f(polygons[i].fill_r, polygons[i].fill_g, polygons[i].fill_b);
+        drawPolygon(i);
+        glDisable(GL_POLYGON_OFFSET_FILL);
+
+        glLineWidth(2.0f);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        glColor3f(polygons[i].border_r, polygons[i].border_g, polygons[i].border_b);
+        drawPolygon(i);
+    }
+
+    // ----- MUDANÇA 2: De glutSwapBuffers() para glFlush() -----
+    glFlush();
+    // --------------------------------------------------------
+}
+
+// ... (As funções drawPolygon, keyboard, e mouse permanecem exatamente as mesmas) ...
+void drawPolygon(int id) {
+    glBegin(GL_POLYGON);
+    switch (id) {
+        case 0: glVertex2i(30, 226);  glVertex2i(113, 226); glVertex2i(113, 143); glVertex2i(30, 143); break;
+        case 1: glVertex2i(143, 226); glVertex2i(226, 226); glVertex2i(226, 143); glVertex2i(143, 143); break;
+        case 2: glVertex2i(30, 113);  glVertex2i(113, 113); glVertex2i(113, 30);  glVertex2i(30, 30); break;
+        case 3: glVertex2i(143, 113); glVertex2i(226, 113); glVertex2i(226, 30);  glVertex2i(143, 30); break;
+    }
+    glEnd();
+}
+
+void keyboard(unsigned char key, int x, int y) {
+    switch (key) {
+        case 'b': case 'B': current_mode = MODE_BORDER; printf("Modo: Mudar cor da BORDA\n"); break;
+        case 'f': case 'F': current_mode = MODE_FILL; printf("Modo: Mudar cor do FUNDO\n"); break;
+        case 27: exit(0); break;
+    }
+}
+
+void mouse(int button, int state, int x, int y) {
+    if (button == GLUT_LEFT_BUTTON &amp;&amp; state == GLUT_DOWN) {
+        int ogl_y = WINDOW_HEIGHT - y;
+        int selected_polygon = -1;
+        if ((x &gt; 30 &amp;&amp; x &lt; 113) &amp;&amp; (ogl_y &gt; 143 &amp;&amp; ogl_y &lt; 226))   selected_polygon = 0;
+        if ((x &gt; 143 &amp;&amp; x &lt; 226) &amp;&amp; (ogl_y &gt; 143 &amp;&amp; ogl_y &lt; 226))  selected_polygon = 1;
+        if ((x &gt; 30 &amp;&amp; x &lt; 113) &amp;&amp; (ogl_y &gt; 30 &amp;&amp; ogl_y &lt; 113))    selected_polygon = 2;
+        if ((x &gt; 143 &amp;&amp; x &lt; 226) &amp;&amp; (ogl_y &gt; 30 &amp;&amp; ogl_y &lt; 113))   selected_polygon = 3;
+        if (selected_polygon != -1) {
+            printf("Poligono %d selecionado.\n", selected_polygon);
+            GLfloat r = (GLfloat)rand() / RAND_MAX;
+            GLfloat g = (GLfloat)rand() / RAND_MAX;
+            GLfloat b = (GLfloat)rand() / RAND_MAX;
+            if (current_mode == MODE_FILL) {
+                polygons[selected_polygon].fill_r = r;
+                polygons[selected_polygon].fill_g = g;
+                polygons[selected_polygon].fill_b = b;
+            } else {
+                polygons[selected_polygon].border_r = r;
+                polygons[selected_polygon].border_g = g;
+                polygons[selected_polygon].border_b = b;
+            }
+            glutPostRedisplay();
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_projeções_geométricas">7. Projeções Geométricas</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Aqui, são explorados diferentes tipos de projeções utilizadas para mapear uma cena 3D em uma imagem 2D.</p>
+</div>
+<div class="sect2">
+<h3 id="_tipos_de_projeções_i">7.1. Tipos de Projeções I</h3>
+<div class="paragraph">
+<p>O programa <code>tiposdeprojecoes.c</code> demonstra e permite alternar entre projeções perspectiva e ortogonal. O usuário pode observar como a escolha da projeção afeta a percepção de profundidade e a aparência dos objetos na cena.</p>
+</div>
+<div id="exa_tiposdeprojecoes" class="listingblock">
+<div class="title">Listagem 12. tiposdeprojecoes.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+// Definições de cores
+#define AZUL     0.0, 0.0, 1.0
+#define VERMELHO 1.0, 0.0, 0.0
+#define AMARELO  1.0, 1.0, 0.0
+#define VERDE    0.0, 1.0, 0.0
+#define CYAN     0.0, 1.0, 1.0
+#define LARANJA  0.8, 0.6, 0.1
+#define ROSEO    0.7, 0.1, 0.6
+#define CINZA    0.6, 0.6, 0.6
+
+// ---- Variáveis de Estado ----
+static int eixoy = 0, eixox = 0;
+// Guarda qual visão está ativa (0=Canto, 1=Frente, 2=Traseira, etc.)
+static int current_view = 0; 
+int largura, altura;
+
+// ---- Dados do Objeto ----
+static GLfloat vertices[30]={
+  0.0,  30.0, 30.0, /* 0 */ 20.0, 30.0, 30.0, /* 1 */
+  30.0, 20.0, 30.0, /* 2 */ 30.0,  0.0, 30.0, /* 3 */
+  0.0,   0.0, 30.0, /* 4 */ 0.0,  30.0,  0.0, /* 5 */
+  30.0, 30.0,  0.0, /* 6 */ 30.0,  0.0,  0.0, /* 7 */
+  0.0,   0.0,  0.0, /* 8 */ 30.0, 30.0, 30.0  /* 9 */
+}; 
+
+static GLubyte frenteIndices[]    = {0,4,3,2,1};
+static GLubyte trasIndices[]      = {5,6,7,8};
+static GLubyte esquerdaIndices[]  = {0,5,8,4};
+static GLubyte direitaIndices[]   = {2,3,7,6,9};
+static GLubyte topoIndices[]      = {0,1,9,6,5};
+static GLubyte fundoIndices[]     = {3,4,8,7};
+static GLubyte trianguloIndices[] = {1,2,9};
+    
+
+void init(void){
+  glClearColor(0.0, 0.0, 0.0, 0.0);
+  glEnable(GL_DEPTH_TEST);
+  glEnable(GL_CULL_FACE); 
+}
+
+// RESHAPE agora cuida apenas da Projeção (a "lente")
+void reshape (int w, int h){
+  largura = w;
+  altura = h;
+  glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+  glMatrixMode (GL_PROJECTION);
+  glLoadIdentity ();
+  gluPerspective(65.0, (GLfloat) w/(GLfloat) h, 1.0, 150.0); // Aumentei o zFar
+  glMatrixMode (GL_MODELVIEW);
+}
+
+// DISPLAY agora cuida da Câmera (Visão) e do desenho do Modelo
+void display(void){
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+  
+  // Reseta a matriz de Visão/Modelo para o início de cada quadro
+  glLoadIdentity();
+
+  // 1. POSICIONA A CÂMERA (Visão)
+  switch(current_view) {
+    case 1: gluLookAt(15, 15, 80, 15, 15, 15, 0, 1, 0); break; // Frente
+    case 2: gluLookAt(15, 15, -50, 15, 15, 15, 0, 1, 0); break; // Traseira
+    case 3: gluLookAt(15, 80, 15, 15, 15, 15, 0, 0, -1); break; // Topo
+    case 4: gluLookAt(15, -50, 15, 15, 15, 15, 0, 0, 1); break; // Fundo
+    case 5: gluLookAt(-50, 15, 15, 15, 15, 15, 0, 1, 0); break; // Esquerda
+    case 6: gluLookAt(80, 15, 15, 15, 15, 15, 0, 1, 0); break; // Direita
+    case 0: // Canto (default)
+    default:
+        gluLookAt(50, 40, 60, 15, 15, 15, 0, 1, 0);
+        break;
+  }
+
+  // 2. APLICA AS ROTAÇÕES MANUAIS NO OBJETO (Modelo)
+  glRotatef ((GLfloat) eixoy, 0.0, 1.0, 0.0);
+  glRotatef ((GLfloat) eixox, 1.0, 0.0, 0.0);
+  
+  // 3. DESENHA O OBJETO
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glVertexPointer(3, GL_FLOAT, 0, vertices);
+
+  glColor3f (AZUL);       /* frente */
+  glDrawElements(GL_POLYGON, 5, GL_UNSIGNED_BYTE, frenteIndices);
+  glColor3f (AMARELO);    /* esquerda */
+  glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_BYTE, esquerdaIndices);
+  glColor3f (VERMELHO);   /* tras */
+  glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_BYTE, trasIndices);
+  glColor3f (VERDE);      /* direita */
+  glDrawElements(GL_POLYGON, 5, GL_UNSIGNED_BYTE, direitaIndices);
+  glColor3f (CYAN);       /* topo */
+  glDrawElements(GL_POLYGON, 5, GL_UNSIGNED_BYTE, topoIndices);
+  glColor3f (LARANJA);    /* fundo */
+  glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, fundoIndices);
+  glColor3f (CINZA);      /* triangulo */
+  glDrawElements(GL_POLYGON, 3, GL_UNSIGNED_BYTE, trianguloIndices);
+
+  glDisableClientState (GL_VERTEX_ARRAY);
+
+  glutSwapBuffers();
+}
+
+// KEYBOARD agora apenas muda o estado das variáveis
+void keyboard(unsigned char key, int x, int y){
+  switch (key) {
+    case 27: exit(0); break;
+    // Rotações manuais
+    case 'y': eixoy = (eixoy + 5) % 360; break;
+    case 'Y': eixoy = (eixoy - 5) % 360; break;
+    case 'x': eixox = (eixox + 5) % 360; break;
+    case 'X': eixox = (eixox - 5) % 360; break;
+    // Seleção de visão (apenas muda a variável e reseta a rotação manual)
+    case 'F': current_view = 1; eixox = eixoy = 0; break;
+    case 'T': current_view = 2; eixox = eixoy = 0; break;
+    case 't': current_view = 3; eixox = eixoy = 0; break;
+    case 'f': current_view = 4; eixox = eixoy = 0; break;
+    case 'e': current_view = 5; eixox = eixoy = 0; break;
+    case 'd': current_view = 6; eixox = eixoy = 0; break;
+    case 'c': current_view = 0; eixox = eixoy = 0; break;
+  }
+  glutPostRedisplay();
+}
+
+
+int main(int argc, char** argv){
+  glutInit(&amp;argc, argv);
+  glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GL_DEPTH);
+  glutInitWindowSize (400, 400); 
+  glutInitWindowPosition (100, 100); 
+  glutCreateWindow ("Tipos de Projecoes - Corrigido");
+  init();
+  glutDisplayFunc(display); 
+  glutKeyboardFunc(keyboard);
+  glutReshapeFunc(reshape);
+  glutMainLoop();
+  return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tipos_de_projeções_ii">7.2. Tipos de Projeções II</h3>
+<div class="paragraph">
+<p>A segunda versão (<code>tiposdeprojecoes_2.c</code>) aprofunda o estudo, oferecendo retardos entre as apresentações dos quadros da animação, tornando mais agradável a visualização.</p>
+</div>
+<div id="exa_tiposdeprojecoes_2" class="listingblock">
+<div class="title">Listagem 13. tiposdeprojecoes_2.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt; // Necessário para a função usleep()
+
+void init(void);
+void display(void);
+void keyboard(unsigned char key, int x, int y);
+void reshape (int w, int h);
+void idle(void); // Protótipo da nova função de animação
+
+// Definições de cores
+#define AZUL     0.0, 0.0, 1.0
+#define VERMELHO 1.0, 0.0, 0.0
+#define AMARELO  1.0, 1.0, 0.0
+#define VERDE    0.0, 1.0, 0.0
+#define CYAN     0.0, 1.0, 1.0
+#define LARANJA  0.8, 0.6, 0.1
+#define ROSEO    0.7, 0.1, 0.6
+#define CINZA    0.6, 0.6, 0.6
+
+// ---- MUDANÇA: Ângulos como GLfloat para animação suave ----
+static GLfloat eixoy = 0.0, eixox = 0.0;
+int largura, altura;
+
+// (Os dados dos vértices e índices permanecem os mesmos)
+static GLfloat vertices[30]={
+  0.0,  30.0, 30.0, /* 0 */ 20.0, 30.0, 30.0, /* 1 */
+  30.0, 20.0, 30.0, /* 2 */ 30.0,  0.0, 30.0, /* 3 */
+  0.0,   0.0, 30.0, /* 4 */ 0.0,  30.0,  0.0, /* 5 */
+  30.0, 30.0,  0.0, /* 6 */ 30.0,  0.0,  0.0, /* 7 */
+  0.0,   0.0,  0.0, /* 8 */ 30.0, 30.0, 30.0  /* 9 */
+}; 
+static GLubyte frenteIndices[]    = {0,4,3,2,1};
+static GLubyte trasIndices[]      = {5,6,7,8};
+static GLubyte esquerdaIndices[]  = {0,5,8,4};
+static GLubyte direitaIndices[]   = {2,3,7,6,9};
+static GLubyte topoIndices[]      = {0,1,9,6,5};
+static GLubyte fundoIndices[]     = {3,4,8,7};
+static GLubyte trianguloIndices[] = {1,2,9};
+    
+int main(int argc, char** argv){
+  glutInit(&amp;argc, argv);
+  glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GL_DEPTH);
+  glutInitWindowSize (400, 400); 
+  glutInitWindowPosition (100, 100); 
+  glutCreateWindow ("Animacao com glutIdleFunc");
+  init();
+  glutDisplayFunc(display); 
+  glutKeyboardFunc(keyboard);
+  glutReshapeFunc(reshape);
+  // ---- NOVO: Registra a função de animação ----
+  glutIdleFunc(idle);
+  // -------------------------------------------
+  glutMainLoop();
+  return 0;
+}
+
+void init(void){
+  glClearColor(0.0, 0.0, 0.0, 0.0);
+  glEnable(GL_DEPTH_TEST);
+  glEnable(GL_CULL_FACE); 
+}
+
+void reshape (int w, int h){
+  largura = w;
+  altura = h;
+  glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  // Inicia com projeção de perspectiva por padrão
+  gluPerspective(65.0, (GLfloat)w / (GLfloat)h, 1.0, 100.0);
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  glTranslatef(0.0, 0.0, -60.0); // Move a câmera um pouco para trás
+}
+
+void display(void){
+  glPushMatrix();
+  glRotatef (eixoy, 0.0, 1.0, 0.0);
+  glRotatef (eixox, 1.0, 0.0, 0.0);
+  
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+  
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glVertexPointer(3, GL_FLOAT, 0, vertices);
+
+  glColor3f (AZUL);       glDrawElements(GL_POLYGON, 5, GL_UNSIGNED_BYTE, frenteIndices);
+  glColor3f (AMARELO);    glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_BYTE, esquerdaIndices);
+  glColor3f (VERMELHO);   glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_BYTE, trasIndices);
+  glColor3f (VERDE);      glDrawElements(GL_POLYGON, 5, GL_UNSIGNED_BYTE, direitaIndices);
+  glColor3f (CYAN);       glDrawElements(GL_POLYGON, 5, GL_UNSIGNED_BYTE, topoIndices);
+  glColor3f (LARANJA);    glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, fundoIndices);
+  glColor3f (CINZA);      glDrawElements(GL_POLYGON, 3, GL_UNSIGNED_BYTE, trianguloIndices);
+
+  glDisableClientState (GL_VERTEX_ARRAY);
+
+  glPopMatrix();
+  glutSwapBuffers();
+}
+
+// ---- NOVA FUNÇÃO IDLE ----
+void idle(void) {
+    // Incrementa os ângulos com valores pequenos e diferentes
+    eixox += 0.2f;
+    eixoy += 0.3f;
+
+    // Solicita que a cena seja redesenhada
+    glutPostRedisplay();
+
+    // Introduz um pequeno atraso em microssegundos (16000 us = 16 ms)
+    // para uma animação de aproximadamente 60 quadros por segundo.
+    usleep(16000);
+}
+// -------------------------
+
+// ---- TECLADO SIMPLIFICADO ----
+void keyboard(unsigned char key, int x, int y){
+  switch (key) {
+    case 27:
+      exit(0);
+      break;
+    // As teclas de rotação manual foram removidas, pois a animação é automática.
+    case 'p': // Projeção de Perspectiva
+      glMatrixMode(GL_PROJECTION);
+      glLoadIdentity();
+      gluPerspective(65.0, (GLfloat) largura/(GLfloat) altura, 1.0, 100.0);
+      glMatrixMode(GL_MODELVIEW);
+      glutPostRedisplay();
+      break;
+    case 'o': // Projeção Ortogonal
+      glMatrixMode(GL_PROJECTION);
+      glLoadIdentity();
+      glOrtho (-50, 50, -50, 50, -50 , 50);
+      glMatrixMode(GL_MODELVIEW);
+      glutPostRedisplay();
+      break;
+  }
+}</code></pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_superfícies_no_espaço">8. Superfícies no Espaço</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Este projeto (<code>splineinter.c</code>) foca na interpolação de splines para a criação de superfícies no espaço 3D. A aplicação renderiza uma superfície baseada em um conjunto de pontos de controle, demonstrando técnicas de modelagem de formas complexas.</p>
+</div>
+<div id="exa_splineinter" class="listingblock">
+<div class="title">Listagem 14. splineinter.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+// ---- Variáveis Globais ----
+static GLfloat view_rot_x = -30.0f;
+static GLfloat view_rot_y = 30.0f;
+static int last_x, last_y;
+static int current_button = -1;
+int is_dragging = 0;
+int selected_i = -1, selected_j = -1;
+GLdouble selected_winZ;
+GLfloat ctrlpoints[4][4][3];
+GLUnurbsObj *theNurb;  // Agora é global
+
+// Protótipos
+void init(void);
+void display(void);
+void reshape(int w, int h);
+void keyboard(unsigned char key, int x, int y);
+void mouse(int button, int state, int x, int y);
+void motion(int x, int y);
+
+void init_surface(void) {
+    for (int i = 0; i &lt; 4; i++) {
+        for (int j = 0; j &lt; 4; j++) {
+            ctrlpoints[i][j][0] = 2.0 * ((GLfloat)i - 1.5);
+            ctrlpoints[i][j][1] = 2.0 * ((GLfloat)j - 1.5);
+            ctrlpoints[i][j][2] = 0.0;
+        }
+    }
+}
+
+int main(int argc, char** argv) {
+    glutInit(&amp;argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+    glutInitWindowSize(700, 700);
+    glutInitWindowPosition(100, 100);
+    glutCreateWindow("Modelagem Interativa de Spline (Solucao Definitiva)");
+    init();
+    glutDisplayFunc(display);
+    glutReshapeFunc(reshape);
+    glutKeyboardFunc(keyboard);
+    glutMouseFunc(mouse);
+    glutMotionFunc(motion);
+    glutMainLoop();
+    return 0;
+}
+
+void init(void) {
+    GLfloat light_ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+    GLfloat light_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+    GLfloat light_specular[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+    GLfloat light_position[] = { 0.0f, 5.0f, 5.0f, 0.0f };
+
+    GLfloat mat_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    GLfloat mat_shininess[] = {100.0f};
+
+    glClearColor(0.1, 0.1, 0.1, 0.0);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_COLOR_MATERIAL);
+    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+    glEnable(GL_AUTO_NORMAL);
+    glEnable(GL_NORMALIZE);
+
+    init_surface();
+
+    // Cria e configura o NURBS uma vez
+    theNurb = gluNewNurbsRenderer();
+    gluNurbsProperty(theNurb, GLU_SAMPLING_TOLERANCE, 25.0);
+    gluNurbsProperty(theNurb, GLU_DISPLAY_MODE, GLU_FILL);
+}
+
+void display(void) {
+    GLfloat knots[8] = {0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0};
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    glPushMatrix();
+    glRotatef(view_rot_x, 1.0, 0.0, 0.0);
+    glRotatef(view_rot_y, 0.0, 1.0, 0.0);
+
+    // Desenha a Superfície NURBS
+    glColor3f(0.7f, 0.7f, 0.8f);
+    gluBeginSurface(theNurb);
+    gluNurbsSurface(theNurb, 8, knots, 8, knots, 4 * 3, 3, &amp;ctrlpoints[0][0][0], 4, 4, GL_MAP2_VERTEX_3);
+    gluEndSurface(theNurb);
+    
+    // Desenha a malha e os pontos de controle
+    glDisable(GL_LIGHTING);
+
+    glColor3f(1.0, 1.0, 0.0); // Linhas amarelas
+    for (int i = 0; i &lt; 4; i++) {
+        glBegin(GL_LINE_STRIP);
+        for (int j = 0; j &lt; 4; j++) glVertex3fv(&amp;ctrlpoints[i][j][0]);
+        glEnd();
+    }
+    for (int j = 0; j &lt; 4; j++) {
+        glBegin(GL_LINE_STRIP);
+        for (int i = 0; i &lt; 4; i++) glVertex3fv(&amp;ctrlpoints[i][j][0]);
+        glEnd();
+    }
+
+    glPointSize(5.0);
+    glColor3f(1.0, 0.0, 0.0); // Pontos vermelhos
+    glBegin(GL_POINTS);
+    for (int i = 0; i &lt; 4; i++) {
+        for (int j = 0; j &lt; 4; j++) glVertex3fv(&amp;ctrlpoints[i][j][0]);
+    }
+    glEnd();
+
+    glEnable(GL_LIGHTING);
+    
+    glPopMatrix();
+    glutSwapBuffers();
+}
+
+void reshape(int w, int h) {
+    glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(45.0, (GLdouble)w / (GLdouble)h, 3.0, 20.0);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslatef(0.0, 0.0, -10.0);
+}
+
+void keyboard(unsigned char key, int x, int y) {
+    if (key == 27) {
+        if (theNurb) gluDeleteNurbsRenderer(theNurb);
+        exit(0);
+    }
+}
+
+void mouse(int button, int state, int x, int y) {
+    if (button == GLUT_LEFT_BUTTON) {
+        if (state == GLUT_DOWN) {
+            is_dragging = 1;
+            GLdouble modelview[16], projection[16]; GLint viewport[4];
+            glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
+            glGetDoublev(GL_PROJECTION_MATRIX, projection);
+            glGetIntegerv(GL_VIEWPORT, viewport);
+            int ogl_y = viewport[3] - y;
+            GLdouble near_x, near_y, near_z, far_x, far_y, far_z;
+            gluUnProject(x, ogl_y, 0.0, modelview, projection, viewport, &amp;near_x, &amp;near_y, &amp;near_z);
+            gluUnProject(x, ogl_y, 1.0, modelview, projection, viewport, &amp;far_x, &amp;far_y, &amp;far_z);
+            GLfloat ray_origin[3] = {(float)near_x, (float)near_y, (float)near_z};
+            GLfloat ray_dir[3] = {(float)(far_x - near_x), (float)(far_y - near_y), (float)(far_z - near_z)};
+            float min_dist = 9999.0;
+            int temp_i = -1, temp_j = -1;
+            for (int i = 0; i &lt; 4; i++) {
+                for (int j = 0; j &lt; 4; j++) {
+                    GLfloat* R = ctrlpoints[i][j];
+                    GLfloat R_minus_Po[3] = {R[0] - ray_origin[0], R[1] - ray_origin[1], R[2] - ray_origin[2]};
+                    float dot1 = R_minus_Po[0]*ray_dir[0] + R_minus_Po[1]*ray_dir[1] + R_minus_Po[2]*ray_dir[2];
+                    float dot2 = ray_dir[0]*ray_dir[0] + ray_dir[1]*ray_dir[1] + ray_dir[2]*ray_dir[2];
+                    float t = dot1 / dot2;
+                    GLfloat closest_point[3] = {ray_origin[0] + t * ray_dir[0], ray_origin[1] + t * ray_dir[1], ray_origin[2] + t * ray_dir[2]};
+                    float dist = sqrt(pow(R[0] - closest_point[0], 2) + pow(R[1] - closest_point[1], 2) + pow(R[2] - closest_point[2], 2));
+                    if (dist &lt; min_dist) { min_dist = dist; temp_i = i; temp_j = j; }
+                }
+            }
+            if (min_dist &lt; 0.2) {
+                selected_i = temp_i;
+                selected_j = temp_j;
+                GLdouble winX, winY;
+                gluProject(ctrlpoints[selected_i][selected_j][0], ctrlpoints[selected_i][selected_j][1], ctrlpoints[selected_i][selected_j][2],
+                           modelview, projection, viewport, &amp;winX, &amp;winY, &amp;selected_winZ);
+            } else {
+                selected_i = -1; selected_j = -1;
+            }
+        } else if (state == GLUT_UP) {
+            is_dragging = 0;
+            selected_i = -1; selected_j = -1;
+        }
+    } else {
+        current_button = button;
+        last_x = x;
+        last_y = y;
+    }
+}
+
+void motion(int x, int y) {
+    if (is_dragging &amp;&amp; selected_i != -1) {
+        GLdouble modelview[16], projection[16]; GLint viewport[4];
+        glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
+        glGetDoublev(GL_PROJECTION_MATRIX, projection);
+        glGetIntegerv(GL_VIEWPORT, viewport);
+        int ogl_y = viewport[3] - y;
+        GLdouble new_wx, new_wy, new_wz;
+        gluUnProject(x, ogl_y, selected_winZ, modelview, projection, viewport, &amp;new_wx, &amp;new_wy, &amp;new_wz);
+        ctrlpoints[selected_i][selected_j][0] = new_wx;
+        ctrlpoints[selected_i][selected_j][1] = new_wy;
+        ctrlpoints[selected_i][selected_j][2] = new_wz;
+        glutPostRedisplay();
+    } else if (current_button != -1) {
+        view_rot_y += (x - last_x);
+        view_rot_x += (y - last_y);
+        last_x = x; last_y = y;
+        glutPostRedisplay();
+    }
+}</code></pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_transformações_geométricas">9. Transformações Geométricas</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nesta seção, são exploradas as transformações geométricas 2D e 3D, utilizando um braço robótico com garra.</p>
+</div>
+<div class="sect2">
+<h3 id="_braço_e_garra">9.1. Braço e Garra</h3>
+<div class="paragraph">
+<p>O programa <code>braco_garra.c</code> implementa um braço robótico com uma garra. O usuário pode interativamente controlar os movimentos do braço e da garra utilizando o teclado, observando a aplicação de transformações.</p>
+</div>
+<div id="exa_braco_garra" class="listingblock">
+<div class="title">Listagem 15. braco_garra.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+
+// Variáveis de estado para os ângulos das articulações
+static int shoulder = 0, elbow = 0;
+static int finger_index = 0, finger_middle = 0, finger_thumb = 0;
+
+// Variáveis de câmera
+static GLfloat view_rot_x = 20.0f; 
+static GLfloat view_rot_y = -30.0f;
+
+void init(void){
+  glClearColor (0.0, 0.0, 0.0, 0.0);
+  glEnable(GL_DEPTH_TEST);
+}
+
+void display(void){
+  glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  
+  glPushMatrix(); 
+  
+  glRotatef(view_rot_x, 1.0, 0.0, 0.0);
+  glRotatef(view_rot_y, 0.0, 1.0, 0.0);
+  
+  // Braço
+  glTranslatef (-2.0, 0.0, 0.0);
+  glRotatef ((GLfloat) shoulder, 0.0, 0.0, 1.0);
+  glTranslatef (1.0, 0.0, 0.0);
+  glPushMatrix();
+  glScalef (2.0, 0.6, 1.0);
+  glutWireCube (1.0);
+  glPopMatrix();
+   
+  // Antebraço
+  glTranslatef (1.0, 0.0, 0.0);
+  glRotatef ((GLfloat) elbow, 0.0, 0.0, 1.0);
+  glTranslatef (1.0, 0.0, 0.0);
+  glPushMatrix();
+  glScalef (2.0, 0.6, 1.0);
+  glutWireCube (1.0);
+  glPopMatrix();
+
+  // Início da Garra
+  glTranslatef(1.0, 0.0, 0.0);
+
+  // Dedo Indicador
+  glPushMatrix();
+      glTranslatef(0.0, 0.2, 0.0);
+      glRotatef((GLfloat) finger_index, 0.0, 0.0, 1.0);
+      glTranslatef(0.5, 0.0, 0.0);
+      glPushMatrix();
+          glScalef(1.0, 0.2, 0.2);
+          glutWireCube(1.0);
+      glPopMatrix();
+  glPopMatrix();
+
+  // Dedo Médio
+  glPushMatrix();
+      glTranslatef(0.0, -0.2, 0.0);
+      glRotatef((GLfloat) finger_middle, 0.0, 0.0, 1.0);
+      glTranslatef(0.5, 0.0, 0.0);
+      glPushMatrix();
+          glScalef(1.0, 0.2, 0.2);
+          glutWireCube(1.0);
+      glPopMatrix();
+  glPopMatrix();
+
+  // Dedo Polegar (AJUSTE FINO FINAL)
+  glPushMatrix();
+      // Move a base do polegar para a SUPERFÍCIE EXATA do antebraço.
+      // O valor foi ajustado de 0.55 para 0.5 para remover o espaço.
+      glTranslatef(0.0, 0.0, 0.5);
+
+      // Rotaciona para apontar para FRENTE.
+      glRotatef(-90.0, 0.0, 1.0, 0.0);
+
+      // Aplica a rotação controlável (p/P).
+      glRotatef((GLfloat) finger_thumb, 0.0, 0.0, 1.0);
+      
+      // Move para o centro do polegar para desenhá-lo.
+      glTranslatef(0.4, 0.0, 0.0);
+      
+      glPushMatrix();
+          glScalef(0.8, 0.2, 0.2);
+          glutWireCube(1.0);
+      glPopMatrix();
+  glPopMatrix(); 
+
+  glPopMatrix(); 
+  glutSwapBuffers();
+}
+
+void reshape (int w, int h){
+  glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+  glMatrixMode (GL_PROJECTION);
+  glLoadIdentity ();
+  gluPerspective(65.0, (GLfloat) w/(GLfloat) h, 1.0, 20.0);
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  glTranslatef (0.0, 0.0, -8.0);
+}
+
+void keyboard (unsigned char key, int x, int y){
+  switch (key) {
+    case 's': shoulder = (shoulder + 5) % 360; glutPostRedisplay(); break;
+    case 'S': shoulder = (shoulder - 5) % 360; glutPostRedisplay(); break;
+    case 'e': elbow = (elbow + 5) % 360; glutPostRedisplay(); break;
+    case 'E': elbow = (elbow - 5) % 360; glutPostRedisplay(); break;
+    case 'i': finger_index = (finger_index + 5) % 360; glutPostRedisplay(); break;
+    case 'I': finger_index = (finger_index - 5) % 360; glutPostRedisplay(); break;
+    case 'm': finger_middle = (finger_middle + 5) % 360; glutPostRedisplay(); break;
+    case 'M': finger_middle = (finger_middle - 5) % 360; glutPostRedisplay(); break;
+    case 'p': finger_thumb = (finger_thumb + 5) % 360; glutPostRedisplay(); break;
+    case 'P': finger_thumb = (finger_thumb - 5) % 360; glutPostRedisplay(); break;
+    case 'a': view_rot_y += 5.0f; glutPostRedisplay(); break;
+    case 'd': view_rot_y -= 5.0f; glutPostRedisplay(); break;
+    case 'w': view_rot_x += 5.0f; glutPostRedisplay(); break;
+    case 27: exit(0); break;
+    default: break;
+  }
+}
+
+int main(int argc, char** argv){
+  glutInit(&amp;argc, argv);
+  glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+  glutInitWindowSize (700, 500);
+  glutInitWindowPosition (100, 100);
+  glutCreateWindow ("Braco Robotico com Garra Final");
+  init ();
+  glutDisplayFunc(display); 
+  glutReshapeFunc(reshape);
+  glutKeyboardFunc(keyboard);
+  glutMainLoop();
+  return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_braço_e_garra_3d">9.2. Braço e Garra 3D</h3>
+<div class="paragraph">
+<p>A versão 3D (<code>braco_garra_3d.c</code>) estende o conceito anterior. O programa permite a manipulação de um braço robótico 3D, incluindo a visualização da cena de diferentes ângulos de câmera.</p>
+</div>
+<div id="exa_braco_garra_3d" class="listingblock">
+<div class="title">Listagem 16. braco_garra_3d.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c">#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+
+// Variáveis de estado para os ângulos das articulações
+static int shoulder = 0, elbow = 0;
+static int finger_index = 0, finger_middle = 0, finger_thumb = 0;
+// NOVA variável para a rotação da base
+static int base_rotation = 0;
+
+// Variáveis de câmera
+static GLfloat view_rot_x = 20.0f; 
+static GLfloat view_rot_y = -30.0f;
+
+void init(void){
+  glClearColor (0.0, 0.0, 0.0, 0.0); // Fundo preto
+  glShadeModel (GL_SMOOTH); // Sombreamento suave (bom para modelos sólidos)
+
+  // Habilita o teste de profundidade para renderização 3D correta
+  glEnable(GL_DEPTH_TEST);
+  // Habilita a remoção de faces "traseiras" para otimização
+  glEnable(GL_CULL_FACE);
+}
+
+void display(void){
+  glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  
+  glPushMatrix(); 
+  
+  // Aplica as rotações da câmera
+  glRotatef(view_rot_x, 1.0, 0.0, 0.0);
+  glRotatef(view_rot_y, 0.0, 1.0, 0.0);
+  
+  // --- NOVO: Rotação da Base do Robô ---
+  // Esta rotação afeta todo o braço que será desenhado a seguir.
+  glRotatef((GLfloat) base_rotation, 0.0, 1.0, 0.0);
+
+  // --- Braço ---
+  glColor3f(1.0, 0.0, 0.0); // Cor Vermelha
+  glTranslatef (-2.0, 0.0, 0.0);
+  glRotatef ((GLfloat) shoulder, 0.0, 0.0, 1.0);
+  glTranslatef (1.0, 0.0, 0.0);
+  glPushMatrix();
+  glScalef (2.0, 0.6, 1.0);
+  glutSolidCube (1.0); // Trocado para SolidCube
+  glPopMatrix();
+   
+  // --- Antebraço ---
+  glColor3f(0.0, 1.0, 0.0); // Cor Verde
+  glTranslatef (1.0, 0.0, 0.0);
+  glRotatef ((GLfloat) elbow, 0.0, 0.0, 1.0);
+  glTranslatef (1.0, 0.0, 0.0);
+  glPushMatrix();
+  glScalef (2.0, 0.6, 1.0);
+  glutSolidCube (1.0); // Trocado para SolidCube
+  glPopMatrix();
+
+  // --- Início da Garra ---
+  glTranslatef(1.0, 0.0, 0.0);
+
+  // --- Dedo Indicador ---
+  glColor3f(0.0, 0.0, 1.0); // Cor Azul
+  glPushMatrix();
+      glTranslatef(0.0, 0.2, 0.0);
+      glRotatef((GLfloat) finger_index, 0.0, 0.0, 1.0);
+      glTranslatef(0.5, 0.0, 0.0);
+      glPushMatrix();
+          glScalef(1.0, 0.2, 0.2);
+          glutSolidCube(1.0); // Trocado para SolidCube
+      glPopMatrix();
+  glPopMatrix();
+
+  // --- Dedo Médio ---
+  glColor3f(1.0, 1.0, 0.0); // Cor Amarela
+  glPushMatrix();
+      glTranslatef(0.0, -0.2, 0.0);
+      glRotatef((GLfloat) finger_middle, 0.0, 0.0, 1.0);
+      glTranslatef(0.5, 0.0, 0.0);
+      glPushMatrix();
+          glScalef(1.0, 0.2, 0.2);
+          glutSolidCube(1.0); // Trocado para SolidCube
+      glPopMatrix();
+  glPopMatrix();
+
+  // --- Dedo Polegar ---
+  glColor3f(1.0, 0.0, 1.0); // Cor Magenta
+  glPushMatrix();
+      glTranslatef(0.0, 0.0, 0.5);
+      glRotatef(-90.0, 0.0, 1.0, 0.0);
+      glRotatef((GLfloat) finger_thumb, 0.0, 0.0, 1.0);
+      glTranslatef(0.4, 0.0, 0.0);
+      glPushMatrix();
+          glScalef(0.8, 0.2, 0.2);
+          glutSolidCube(1.0); // Trocado para SolidCube
+      glPopMatrix();
+  glPopMatrix(); 
+
+  glPopMatrix(); 
+  glutSwapBuffers();
+}
+
+void reshape (int w, int h){
+  glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+  glMatrixMode (GL_PROJECTION);
+  glLoadIdentity ();
+  gluPerspective(65.0, (GLfloat) w/(GLfloat) h, 1.0, 20.0);
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  glTranslatef (0.0, 0.0, -8.0);
+}
+
+void keyboard (unsigned char key, int x, int y){
+  switch (key) {
+    // Controles do braço
+    case 's': shoulder = (shoulder + 5) % 360; glutPostRedisplay(); break;
+    case 'S': shoulder = (shoulder - 5) % 360; glutPostRedisplay(); break;
+    case 'e': elbow = (elbow + 5) % 360; glutPostRedisplay(); break;
+    case 'E': elbow = (elbow - 5) % 360; glutPostRedisplay(); break;
+    
+    // Controles da garra
+    case 'i': finger_index = (finger_index + 5) % 360; glutPostRedisplay(); break;
+    case 'I': finger_index = (finger_index - 5) % 360; glutPostRedisplay(); break;
+    case 'm': finger_middle = (finger_middle + 5) % 360; glutPostRedisplay(); break;
+    case 'M': finger_middle = (finger_middle - 5) % 360; glutPostRedisplay(); break;
+    case 'p': finger_thumb = (finger_thumb + 5) % 360; glutPostRedisplay(); break;
+    case 'P': finger_thumb = (finger_thumb - 5) % 360; glutPostRedisplay(); break;
+    
+    // Controles de câmera
+    case 'a': view_rot_y += 5.0f; glutPostRedisplay(); break;
+    case 'd': view_rot_y -= 5.0f; glutPostRedisplay(); break;
+    case 'w': view_rot_x += 5.0f; glutPostRedisplay(); break;
+    
+    // NOVOS controles da base
+    case 'b': base_rotation = (base_rotation + 5) % 360; glutPostRedisplay(); break;
+    case 'B': base_rotation = (base_rotation - 5) % 360; glutPostRedisplay(); break;
+    
+    // Controle de saída
+    case 27: exit(0); break;
+    default: break;
+  }
+}
+
+int main(int argc, char** argv){
+  glutInit(&amp;argc, argv);
+  glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+  glutInitWindowSize (700, 500);
+  glutInitWindowPosition (100, 100);
+  glutCreateWindow ("Braco Robotico 3D Solido");
+  init ();
+  glutDisplayFunc(display); 
+  glutReshapeFunc(reshape);
+  glutKeyboardFunc(keyboard);
+  glutMainLoop();
+  return 0;
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2025-07-15 10:04:07 -0300
+Última atualização 2025-07-15 22:13:12 -0300
 </div>
 </div>
 <script type="text/x-mathjax-config">
