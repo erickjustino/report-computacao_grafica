@@ -54,6 +54,7 @@ O projeto está organizado conforme os tópicos abordados na disciplina:
    cd SEU_REPOSITORIO
 
 3.Edite o Makefile alterando a variável EXEC para o nome do programa desejado (sem extensão .c).
+ 
 4. Compile:
    ```bash
    make
