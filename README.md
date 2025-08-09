@@ -55,9 +55,15 @@ O projeto está organizado conforme os tópicos abordados na disciplina:
 
 3.Edite o Makefile alterando a variável EXEC para o nome do programa desejado (sem extensão .c).
 4. Compile:
+   ```bash
    make
+   ```
 5. Execute:
+    ```bash
    ./NOME_DO_EXECUTAVEL.exe
+    ```
 6. Para limpar os binários gerados:
+   ```bash
    make clean
+   ```
 
