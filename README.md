@@ -53,7 +53,7 @@ O projeto está organizado conforme os tópicos abordados na disciplina:
    git clone https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git
    cd SEU_REPOSITORIO
 
-  3.Edite o Makefile alterando a variável EXEC para o nome do programa desejado (sem extensão .c).
+3. Edite o Makefile alterando a variável EXEC para o nome do programa desejado (sem extensão .c).
  
 4. Compile:
    ```bash
